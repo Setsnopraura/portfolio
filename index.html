@@ -1,31 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Portfolio Spettacolare</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Hero Section with fade-in animation -->
-    <section class="hero">
-        <div class="hero-content" data-aos="fade-up">
-            <h1>Hi, I'm <span class="highlight">Matteo</span></h1>
-            <p class="typewriter">Web Developer & Designer</p>
+    <!-- Loader Iniziale -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <span class="loader-text">Caricamento</span>
+        </div>
+    </div>
+
+    <!-- Menu di Navigazione -->
+    <nav class="navbar">
+        <div class="logo" data-aos="fade-right">NotAqua</div>
+        <ul class="nav-links">
+            <li data-aos="fade-down" data-aos-delay="100"><a href="#home">Home</a></li>
+            <li data-aos="fade-down" data-aos-delay="200"><a href="#about">Chi Sono</a></li>
+            <li data-aos="fade-down" data-aos-delay="300"><a href="#projects">Progetti</a></li>
+            <li data-aos="fade-down" data-aos-delay="400"><a href="#contact">Contatti</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section con Parallax -->
+    <section id="home" class="hero parallax">
+        <div class="hero-content">
+            <h1 class="glitch" data-text="Ciao, Sono NotAqua">Ciao, Sono NotAqua</h1>
+            <p class="typewriter">Sviluppatore Creative & Designer</p>
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+                <p>Scorri Giù</p>
+            </div>
+        </div>
+        <div class="particles"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-grid">
+            <div class="about-text" data-aos="fade-right">
+                <h2>Chi Sono</h2>
+                <p class="gradient-text">Trasformo le idee in realtà digitale</p>
+                <!-- ... altro testo ... -->
+            </div>
+            <div class="skills-container" data-aos="fade-left">
+                <div class="skill">
+                    <div class="skill-title">HTML/CSS</div>
+                    <div class="skill-bar" data-percentage="90%"></div>
+                </div>
+                <!-- Altre skill bars... -->
+            </div>
         </div>
     </section>
 
-    <!-- Projects Section with slide-up -->
-    <section class="projects">
-        <div class="project-card" data-aos="slide-up">
-            <img src="progetto1.jpg" alt="Project 1">
-            <h3>Project 1</h3>
+    <!-- Projects Section con Grid -->
+    <section id="projects" class="projects">
+        <h2 data-aos="fade-up">I Miei Progetti</h2>
+        <div class="projects-grid">
+            <div class="project-card" data-aos="flip-left">
+                <div class="project-content">
+                    <img src="project1.jpg" alt="Progetto 1">
+                    <div class="project-info">
+                        <h3>Nome Progetto</h3>
+                        <p>Descrizione progetto</p>
+                        <div class="project-links">
+                            <a href="#" class="btn">Demo Live</a>
+                            <a href="#" class="btn">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Altri progetti... -->
         </div>
-        <!-- More projects... -->
     </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-container" data-aos="zoom-in">
+            <h2>Contattami</h2>
+            <form class="contact-form">
+                <div class="input-group">
+                    <input type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Nome</label>
+                </div>
+                <!-- Altri campi form... -->
+                <button class="submit-btn">
+                    <span>Invia</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Inizializzazione AOS -->
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+
+    <!-- Parallax Effect -->
+    <script>
+        document.addEventListener('scroll', () => {
+            const parallaxElements = document.querySelectorAll('.parallax');
+            parallaxElements.forEach(element => {
+                const speed = element.dataset.speed || 0.5;
+                element.style.transform = `translateY(${window.scrollY * speed}px)`;
+            });
+        });
+    </script>
+
+    <!-- Particles Animation -->
+    <script>
+        function createParticles() {
+            const particles = document.querySelector('.particles');
+            for(let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                particle.style.animationDelay = Math.random() + 's';
+                particles.appendChild(particle);
+            }
+        }
+    </script>
+
+    <!-- Smooth Scroll -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <!-- Form Validation con Animazione -->
+    <script>
+        const form = document.querySelector('.contact-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('.submit-btn');
+            btn.classList.add('sending');
+            // Simula invio
+            setTimeout(() => {
+                btn.classList.remove('sending');
+                btn.classList.add('sent');
+            }, 2000);
+        });
+    </script>
 </body>
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    AOS.init();
-</script>
 </html>
