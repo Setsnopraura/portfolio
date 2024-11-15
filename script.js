@@ -1,50 +1,43 @@
-// Inizializzazione AOS
-AOS.init({
-    duration: 1000,
-    once: true
-});
-
-// Parallax Effect
-document.addEventListener('scroll', () => {
-    const parallaxElements = document.querySelectorAll('.parallax');
-    parallaxElements.forEach(element => {
-        const speed = element.dataset.speed || 0.5;
-        element.style.transform = `translateY(${window.scrollY * speed}px)`;
+// Inizializza AOS
+document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+        duration: 800,
+        once: true
     });
-});
 
-// Particles Animation
-function createParticles() {
-    const particles = document.querySelector('.particles');
-    for(let i = 0; i < 50; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDuration = (Math.random() * 2 + 1) + 's';
-        particle.style.animationDelay = Math.random() + 's';
-        particles.appendChild(particle);
+    // Rimuovi il loader
+    setTimeout(() => {
+        document.querySelector('.loader-wrapper').style.display = 'none';
+    }, 1500);
+
+    // Mobile menu
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav-links');
+    
+    if(burger) {
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+        });
     }
-}
 
-// Smooth Scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
         });
     });
-});
 
-// Form Validation con Animazione
-const form = document.querySelector('.contact-form');
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('.submit-btn');
-    btn.classList.add('sending');
-    // Simula invio
-    setTimeout(() => {
-        btn.classList.remove('sending');
-        btn.classList.add('sent');
-    }, 2000);
+    // Form handling
+    const form = document.querySelector('.contact-form');
+    if(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Aggiungi qui la tua logica per l'invio del form
+            alert('Messaggio inviato!');
+            form.reset();
+        });
+    }
 });
