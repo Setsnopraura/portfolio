@@ -40,4 +40,55 @@ document.addEventListener('DOMContentLoaded', function() {
             form.reset();
         });
     }
+
+    // Animazione contatori statistiche
+    function animateStats() {
+        const stats = document.querySelectorAll('.stat-number');
+        stats.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-count'));
+            let count = 0;
+            const duration = 2000; // 2 secondi
+            const increment = target / (duration / 16);
+
+            const updateCount = () => {
+                if(count < target) {
+                    count += increment;
+                    stat.textContent = Math.floor(count);
+                    requestAnimationFrame(updateCount);
+                } else {
+                    stat.textContent = target;
+                }
+            };
+
+            updateCount();
+        });
+    }
+
+    // Intersection Observer per le statistiche
+    const statsSection = document.querySelector('.statistics');
+    if(statsSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    animateStats();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(statsSection);
+    }
+
+    // Smooth reveal per timeline
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = `translateY(50px)`;
+
+        setTimeout(() => {
+            item.style.transition = 'all 0.8s ease';
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+        }, 300 * index);
+    });
 });
