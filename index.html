@@ -3,218 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Creativo</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Portfolio 3D</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <!-- Loader -->
-    <div class="loader-wrapper">
-        <div class="loader"></div>
+    <div class="flex flex-col items-center justify-center h-screen">
+        <h1 class="text-4xl font-bold text-white">Il Mio Portfolio 3D</h1>
+        <div id="portfolio" class="mt-10 w-full h-96"></div>
+        <div class="mt-5">
+            <a href="#projects" class="bg-blue-500 text-white px-4 py-2 rounded">I Miei Progetti</a>
+            <a href="#contact" class="bg-green-500 text-white px-4 py-2 rounded ml-4">Contattami</a>
+        </div>
     </div>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">PORTFOLIO</div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">Chi Sono</a>
-            <a href="#projects">Progetti</a>
-            <a href="#contact">Contatti</a>
-        </div>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="glitch" data-text="Ciao, Sono [Nome]">Ciao, Sono [Nome]</h1>
-            <p class="typewriter">Sviluppatore Creative & Designer</p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn primary">I Miei Lavori</a>
-                <a href="#contact" class="btn secondary">Contattami</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 data-aos="fade-up">Chi Sono</h2>
-            <div class="about-content">
-                <div class="about-text" data-aos="fade-right">
-                    <p>Sono uno sviluppatore appassionato di design e tecnologia...</p>
-                    <div class="skills">
-                        <div class="skill">
-                            <span>HTML/CSS</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <span>JavaScript</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 data-aos="fade-up">I Miei Progetti</h2>
-            <div class="projects-grid">
-                <div class="project-card" data-aos="fade-up">
-                    <div class="project-image">
-                        <img src="placeholder.jpg" alt="Progetto 1">
-                    </div>
-                    <div class="project-info">
-                        <h3>Progetto 1</h3>
-                        <p>Descrizione del progetto...</p>
-                        <div class="project-links">
-                            <a href="#" class="btn">Demo</a>
-                            <a href="#" class="btn">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Aggiungi più project-card qui -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 data-aos="fade-up">Contattami</h2>
-            <form class="contact-form" data-aos="fade-up">
-                <div class="form-group">
-                    <input type="text" id="name" required>
-                    <label for="name">Nome</label>
-                </div>
-                <div class="form-group">
-                    <input type="email" id="email" required>
-                    <label for="email">Email</label>
-                </div>
-                <div class="form-group">
-                    <textarea id="message" required></textarea>
-                    <label for="message">Messaggio</label>
-                </div>
-                <button type="submit" class="btn submit-btn">
-                    Invia <i class="fas fa-paper-plane"></i>
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Experience Timeline Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 data-aos="fade-up">Esperienza</h2>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-content">
-                        <span class="date">2023 - Presente</span>
-                        <h3>Senior Developer</h3>
-                        <h4>Azienda Tech</h4>
-                        <p>Sviluppo di applicazioni web scalabili utilizzando le più moderne tecnologie...</p>
-                        <div class="tech-stack">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>AWS</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Aggiungi più timeline-item qui -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 data-aos="fade-up">Servizi</h2>
-            <div class="services-grid">
-                <div class="service-card" data-aos="zoom-in">
-                    <i class="fas fa-code"></i>
-                    <h3>Web Development</h3>
-                    <p>Sviluppo siti web responsive e performanti</p>
-                    <ul class="service-list">
-                        <li>Frontend Development</li>
-                        <li>Backend Development</li>
-                        <li>API Integration</li>
-                    </ul>
-                </div>
-                <!-- Aggiungi più service-card qui -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Statistics Section -->
-    <section class="statistics">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item" data-aos="fade-up">
-                    <span class="stat-number" data-count="50">0</span>
-                    <span class="stat-label">Progetti Completati</span>
-                </div>
-                <!-- Aggiungi più stat-item qui -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 data-aos="fade-up">Feedback</h2>
-            <div class="testimonials-slider">
-                <div class="testimonial" data-aos="fade-up">
-                    <div class="testimonial-content">
-                        <p>"Lavoro eccezionale! Professionale e puntuale."</p>
-                        <div class="testimonial-author">
-                            <img src="client1.jpg" alt="Cliente 1">
-                            <div class="author-info">
-                                <h4>Nome Cliente</h4>
-                                <span>CEO, Azienda</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Aggiungi più testimonial qui -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section class="blog">
-        <div class="container">
-            <h2 data-aos="fade-up">Blog</h2>
-            <div class="blog-grid">
-                <article class="blog-card" data-aos="fade-up">
-                    <div class="blog-image">
-                        <img src="blog1.jpg" alt="Blog 1">
-                    </div>
-                    <div class="blog-content">
-                        <span class="blog-date">12 Mar 2024</span>
-                        <h3>Titolo del Post</h3>
-                        <p>Breve descrizione dell'articolo...</p>
-                        <a href="#" class="read-more">Leggi di più →</a>
-                    </div>
-                </article>
-                <!-- Aggiungi più blog-card qui -->
-            </div>
-        </div>
-    </section>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
